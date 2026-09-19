@@ -63,13 +63,23 @@
         .nav-links a:hover::after { width: 100%; }
         .nav-right { display: flex; gap: 1rem; align-items: center; }
         @media (max-width: 900px) {
-            .nav-container { flex-wrap: wrap; height: auto; padding-top: 1.25rem; padding-bottom: 1.25rem; }
-            .nav-toggle { display: flex; }
-            .nav-center, .nav-right { flex-basis: 100%; display: none; }
-            nav.nav-open .nav-center, nav.nav-open .nav-right { display: flex; }
-            .nav-center { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-top: 1.5rem; }
-            .nav-right { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-top: 1rem; }
-            .nav-right .cta-btn { justify-content: center; }
+            .nav-container { flex-wrap: wrap; height: auto; padding-top: 0.6rem; padding-bottom: 0.6rem; }
+            .logo { gap: 0.5rem; font-size: 1.05rem; margin-right: auto; }
+            .logo img { height: 40px; }
+            .logo-text span { display: none; }
+            .nav-toggle { display: flex; margin-left: 0.75rem; }
+            .nav-center { flex-basis: 100%; display: none; order: 2; }
+            nav.nav-open .nav-center { display: flex; }
+            .nav-center { flex-direction: column; align-items: center; margin-top: 1.5rem; }
+            .nav-links { display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; justify-items: center; row-gap: 0.6rem; column-gap: 0.25rem; width: 100%; }
+            .nav-links a { text-decoration: underline; text-underline-offset: 4px; }
+            .nav-links li:nth-child(1) { grid-column: 1; grid-row: 1; }
+            .nav-links li:nth-child(2) { grid-column: 2; grid-row: 1; }
+            .nav-links li:nth-child(3) { grid-column: 3; grid-row: 1; }
+            .nav-links li:nth-child(4) { grid-column: 4; grid-row: 1; }
+            .nav-services-amp, .nav-services-pricing { display: none; }
+            .nav-right { flex-basis: 100%; display: flex; flex-direction: row; gap: 0.6rem; margin-top: 0.65rem; order: 1; }
+            .nav-right .cta-btn { flex: 1; justify-content: center; padding: 0.65rem 0.9rem; font-size: 0.85rem; }
         }
         .cta-btn { padding: 0.7rem 1.5rem; border-radius: var(--radius-pill); text-decoration: none; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.25s var(--ease); }
         .cta-btn-solid { background-color: var(--primary-blue); color: var(--white); font-weight: 700; padding: 0.8rem 1.7rem; box-shadow: 0 8px 20px rgba(0,61,165,0.35); }
@@ -228,7 +238,9 @@
             * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
         }
         @media (max-width: 768px) {
-            .hero { min-height: 480px; padding: 3rem 0; }
+            .hero { min-height: 480px; padding: 2.25rem 0 6rem; }
+            .hero-links { margin-top: 1rem; }
+            .section-curve svg { height: 56px; }
             .visit-us-grid { grid-template-columns: 1fr; }
             .map-container { height: 220px; }
             .slideshow { flex: none; height: 320px; min-height: 0; }
@@ -254,7 +266,7 @@
             <div class="nav-center" id="navCenter">
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services &amp; Pricing</a></li>
+                    <li class="nav-services"><a href="#services"><span class="nav-services-word">Services</span> <span class="nav-services-amp">&amp;</span> <span class="nav-services-word nav-services-pricing">Pricing</span></a></li>
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#visit-us">Contact</a></li>
                 </ul>
