@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Maldon Foot Clinic - Professional podiatry services in Maldon, Essex">
+    <title>Maldon Foot Clinic - Professional Podiatry Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #003DA5;
+            --dark-blue: #002870;
+            --light-blue: #E8F1FF;
+            --white: #FFFFFF;
+            --silver: #C0C0C0;
+            --light-silver: #E8E8E8;
+            --text-color: #57524A;
+            --text-muted: #5F594E;
+            --light-gray: #F1E9DA;
+
+            /* Warm neutrals (redesign-variant) */
+            --cream: #FBF7F0;
+            --card-bg: #FFFDF9;
+            --warm-border: rgba(120,100,80,0.14);
+
+            /* Third accent: warm sage green (redesign-variant) */
+            --sage: #7A9B76;
+            --sage-dark: #5C7A58;
+            --sage-light: #E9F0E6;
+
+            /* Radius scale (redesign-variant) */
+            --radius: 22px;
+            --radius-sm: 16px;
+            --radius-pill: 999px;
+
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 3px rgba(90,70,50,0.07);
+            --shadow-md: 0 8px 24px rgba(90,70,50,0.09);
+            --shadow-lg: 0 20px 45px rgba(90,70,50,0.16);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--cream); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--sage-dark); outline-offset: 3px; }
+        .skip-link { position: absolute; left: 1rem; top: -60px; background: var(--primary-blue); color: var(--white); padding: 0.75rem 1.25rem; border-radius: var(--radius-sm); z-index: 2000; text-decoration: none; font-weight: 600; transition: top 0.2s var(--ease); }
+        .skip-link:focus { top: 1rem; }
+        nav { background-color: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--warm-border); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 100px; }
+        .logo { color: var(--primary-blue); font-size: 1.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+        .logo img { height: 72px; width: auto; }
+        .logo-text span { display: block; font-size: 0.65rem; color: #7A756C; letter-spacing: 1px; font-weight: 600; }
+        .nav-toggle { display: none; width: 44px; height: 44px; border-radius: var(--radius-sm); background: none; border: 1.5px solid var(--warm-border); cursor: pointer; color: var(--primary-blue); align-items: center; justify-content: center; margin-left: auto; }
+        .nav-toggle svg.icon-close { display: none; }
+        nav.nav-open .nav-toggle svg.icon-open { display: none; }
+        nav.nav-open .nav-toggle svg.icon-close { display: block; }
+        .nav-center { display: flex; gap: 3rem; align-items: center; flex: 1; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links a { position: relative; color: var(--text-color); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.25s var(--ease); }
+        .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: var(--primary-blue); transition: width 0.25s var(--ease); }
+        .nav-links a:hover { color: var(--primary-blue); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-right { display: flex; gap: 1rem; align-items: center; }
+        @media (max-width: 900px) {
+            .nav-container { flex-wrap: wrap; height: auto; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+            .nav-toggle { display: flex; }
+            .nav-center, .nav-right { flex-basis: 100%; display: none; }
+            nav.nav-open .nav-center, nav.nav-open .nav-right { display: flex; }
+            .nav-center { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-top: 1.5rem; }
+            .nav-right { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-top: 1rem; }
+            .nav-right .cta-btn { justify-content: center; }
+        }
+        .cta-btn { padding: 0.7rem 1.5rem; border-radius: var(--radius-pill); text-decoration: none; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.25s var(--ease); }
+        .cta-btn-solid { background-color: var(--primary-blue); color: var(--white); font-weight: 700; padding: 0.8rem 1.7rem; box-shadow: 0 8px 20px rgba(0,61,165,0.35); }
+        .cta-btn-solid:hover { background-color: var(--dark-blue); transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-md); }
+        .cta-btn-outline { background-color: transparent; color: var(--primary-blue); border: 1.5px solid var(--primary-blue); }
+        .cta-btn-outline:hover { background-color: var(--primary-blue); color: var(--white); transform: translateY(-2px) scale(1.03); }
+        .hero {
+            min-height: 640px;
+            background:
+                radial-gradient(circle at 18% 22%, rgba(122,155,118,0.28), transparent 42%),
+                radial-gradient(circle at 82% 78%, rgba(107,163,255,0.22), transparent 48%),
+                linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 60%, #0a4fc4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 0;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 75%);
+            pointer-events: none;
+        }
+        .hero-glow { position: absolute; top: 12%; left: 8%; width: 360px; height: 360px; background: radial-gradient(circle, rgba(122,155,118,0.38), transparent 70%); filter: blur(50px); border-radius: 50%; z-index: 0; pointer-events: none; animation: heroFloat 16s ease-in-out infinite; }
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(36px, -24px) scale(1.08); }
+        }
+        .section-curve { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; z-index: 1; pointer-events: none; }
+        .section-curve svg { display: block; width: 100%; height: 90px; }
+        .wave-hero-visit { fill: var(--light-gray); }
+        .wave-booking-footer { fill: var(--dark-blue); }
+        .section-fade { position: absolute; left: 0; right: 0; bottom: -1px; height: 64px; pointer-events: none; z-index: 1; }
+        .hero-content { max-width: 760px; width: 100%; padding: 0 2rem; text-align: center; }
+        .hero-text { text-align: center; color: var(--white); position: relative; z-index: 1; }
+        .hero-text::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background-image: url('logo.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.12; z-index: 0; pointer-events: none; }
+        .eyebrow { position: relative; z-index: 1; display: inline-block; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); padding: 0.4rem 1.1rem; border-radius: var(--radius-pill); margin-bottom: 1.5rem; }
+        .address-box { padding: 2.5rem; display: flex; flex-direction: column; background-color: transparent; }
+        .address-box h3 { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 1.25rem; }
+        .address-box p { font-weight: 500; line-height: 1.7; }
+        .address-box-label { color: var(--primary-blue); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.3rem; display: block; }
+        .day-label { color: var(--primary-blue); font-weight: 700; }
+        .info-rows { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+        .info-row { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--warm-border); }
+        .info-row:first-of-type { padding-top: 0; }
+        .info-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+        .info-icon { flex: 0 0 40px; width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--light-blue); color: var(--primary-blue); display: flex; align-items: center; justify-content: center; }
+        .hero h1 { position: relative; z-index: 1; font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .hero-buttons { position: relative; z-index: 1; display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-links { position: relative; z-index: 1; margin-top: 1.5rem; display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; font-size: 0.9rem; }
+        .hero-links a { color: rgba(255,255,255,0.85); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s var(--ease); }
+        .hero-links a:hover { color: var(--white); }
+        .hero-links span { color: rgba(255,255,255,0.45); }
+        .btn { padding: 1rem 2.2rem; border: none; border-radius: var(--radius-pill); font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.25s var(--ease); }
+        .btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 30px rgba(0,0,0,0.18); }
+        .btn-primary { background-color: var(--white); color: var(--primary-blue); border: 2px solid var(--white); font-weight: 700; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 10px 26px rgba(0,0,0,0.22); }
+        .btn-primary:hover { background-color: rgba(255,255,255,0.92); box-shadow: 0 14px 32px rgba(0,0,0,0.28); }
+        .btn-tertiary { background-color: var(--sage-dark); color: var(--white); border: 2px solid var(--sage-dark); font-weight: 700; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 10px 26px rgba(92,122,88,0.5); }
+        .btn-tertiary:hover { background-color: var(--sage); border-color: var(--sage); box-shadow: 0 14px 32px rgba(122,155,118,0.55); }
+        .btn-google { background-color: #4285F4; color: var(--white); border: 2px solid #4285F4; }
+        .btn-google:hover { background-color: #3367D6; border-color: #3367D6; }
+        .btn-facebook { background-color: #1877F2; color: var(--white); border: 2px solid #1877F2; display: inline-flex; align-items: center; gap: 0.6rem; }
+        .btn-facebook:hover { background-color: #145DBF; border-color: #145DBF; }
+        .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .footer-social a { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.12); color: var(--white); display: flex; align-items: center; justify-content: center; transition: background 0.2s var(--ease), transform 0.2s var(--ease); }
+        .footer-social a:hover { background: #1877F2; transform: translateY(-2px) scale(1.05); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
+        section { padding: 6rem 0; }
+        section.light-bg { background-color: var(--light-gray); }
+        h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--primary-blue); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }
+        h3 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 0.75rem; }
+        .section-intro { text-align: center; margin-bottom: 4rem; }
+        .section-intro p { max-width: 600px; margin: 0 auto; color: var(--text-muted); }
+        .section-banner { background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)); color: var(--white); text-align: center; padding: 3.5rem 2rem; margin: -6rem 0 4rem; }
+        .section-banner h2 { color: var(--white); margin-bottom: 0.5rem; }
+        .section-banner p { max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.85); }
+        .about-content { max-width: 780px; margin: 0 auto; text-align: center; }
+        .about-content p { font-size: 1.08rem; line-height: 1.85; color: var(--text-color); }
+        .about-content p + p { margin-top: 1.5rem; }
+        .pricing-card, .review-card, .address-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--warm-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+        .pricing-card:hover, .review-card:hover { transform: translateY(-6px) scale(1.015); box-shadow: var(--shadow-lg); }
+        .pricing-card { position: relative; overflow: hidden; padding: 2.25rem; }
+        .pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary-blue), #4d8fe0); }
+        .btn-solid-blue { background-color: var(--primary-blue); color: var(--white); border: 2px solid var(--primary-blue); }
+        .btn-solid-blue:hover { background-color: var(--dark-blue); border-color: var(--dark-blue); }
+        .btn-outline-blue { background-color: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue); display: inline-flex; align-items: center; gap: 0.6rem; }
+        .btn-outline-blue:hover { background-color: var(--primary-blue); color: var(--white); }
+        .reviews-carousel { display: flex; align-items: center; gap: 1rem; }
+        .reviews-viewport { flex: 1; overflow: hidden; }
+        .reviews-track { display: flex; gap: 1.5rem; transition: transform 0.5s var(--ease); }
+        .review-card { flex: 0 0 320px; padding: 1.75rem; }
+        .carousel-nav { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--warm-border); box-shadow: var(--shadow-md); cursor: pointer; color: var(--primary-blue); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s var(--ease); }
+        .carousel-nav:hover { background: var(--primary-blue); color: var(--white); transform: scale(1.06); }
+        .review-stars { color: #fbbc04; letter-spacing: 0.08em; margin-bottom: 0.65rem; }
+        .review-name { color: var(--primary-blue); font-weight: 700; margin-bottom: 0.4rem; }
+        .review-text { color: var(--text-color); line-height: 1.7; font-size: 0.95rem; }
+        .review-text-muted { color: var(--text-muted); font-style: italic; }
+        .review-meta { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.8rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.25rem; }
+        .pricing-card { text-align: center; padding-top: 2.5rem; }
+        .pricing-card h3 { margin-bottom: 0.25rem; }
+        .pricing-card p { color: var(--text-muted); font-size: 0.92rem; }
+        .pricing-card h3 + p { margin-top: 0.75rem; }
+        .pricing-card.featured { border: 2px solid var(--primary-blue); box-shadow: var(--shadow-lg); transform: scale(1.04); }
+        .pricing-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+        .pricing-card.featured::before { height: 6px; }
+        .pricing-badge { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: var(--sage-dark); color: var(--white); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.35rem 1rem; border-radius: var(--radius-pill); white-space: nowrap; box-shadow: var(--shadow-sm); }
+        .pricing-detail { position: absolute; inset: 0; z-index: 2; background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)); color: var(--white); padding: 2.25rem; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); pointer-events: none; }
+        .pricing-card:hover .pricing-detail, .pricing-card:focus-within .pricing-detail, .pricing-card.touch-active .pricing-detail { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .pricing-detail p { color: rgba(255,255,255,0.94); font-size: 0.95rem; line-height: 1.7; }
+        .pricing-disclaimer { display: flex; gap: 1rem; align-items: flex-start; background-color: var(--sage-light); padding: 1.75rem 2rem; margin-top: 3rem; border-radius: var(--radius); }
+        .pricing-disclaimer .disclaimer-icon { flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%; background: var(--sage-dark); color: var(--white); display: flex; align-items: center; justify-content: center; }
+        .pricing-disclaimer strong { color: var(--sage-dark); display: block; margin-bottom: 0.25rem; font-size: 0.95rem; }
+        .pricing-disclaimer p { color: var(--text-color); font-size: 0.92rem; }
+        .visit-us-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 2.5rem; align-items: stretch; }
+        .location-card { background-color: var(--card-bg); border: 1px solid var(--warm-border); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .location-card h3 { margin-bottom: 0; }
+        .slideshow { position: relative; flex: 1; min-height: 400px; border-radius: var(--radius-sm); overflow: hidden; background: #000; }
+        .slideshow .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.7s var(--ease); }
+        .slideshow .slide.active { opacity: 1; }
+        .slide-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.9rem; color: var(--primary-blue); display: flex; align-items: center; justify-content: center; transition: background 0.2s var(--ease); z-index: 2; }
+        .slide-nav:hover { background: var(--white); }
+        .slide-nav.prev { left: 12px; }
+        .slide-nav.next { right: 12px; }
+        .slide-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+        .slide-dot { width: 8px; height: 8px; padding: 0; border: none; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background 0.2s var(--ease), transform 0.2s var(--ease); }
+        .slide-dot.active { background: var(--white); transform: scale(1.3); }
+        .map-container { border-radius: var(--radius-sm); overflow: hidden; height: 220px; }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+        footer { background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)); color: var(--white); padding: 4.5rem 2rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; margin-bottom: 2.5rem; }
+        .footer-section h4 { color: var(--white); margin-bottom: 1.2rem; }
+        .footer-section a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s var(--ease); }
+        .footer-section a:hover { color: var(--white); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; text-align: center; }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1.in-view { transition-delay: 0.18s; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hero-glow { animation: none !important; }
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+        }
+        @media (max-width: 768px) {
+            .hero { min-height: 480px; padding: 3rem 0; }
+            .visit-us-grid { grid-template-columns: 1fr; }
+            .map-container { height: 220px; }
+            .slideshow { flex: none; height: 320px; min-height: 0; }
+            .review-card { flex-basis: 240px; }
+            .carousel-nav { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#home" class="skip-link">Skip to content</a>
+    <nav id="siteNav">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="logo.jpg" alt="Maldon Foot Clinic Logo">
+                <div class="logo-text">
+                    Maldon Foot Clinic<span>Professional Experienced Foot Care</span>
+                </div>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navCenter">
+                <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+                <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+            </button>
+            <div class="nav-center" id="navCenter">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services &amp; Pricing</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#visit-us">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="#booking" class="cta-btn cta-btn-solid">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3v4M16 3v4M3 10h18" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 15l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Book Online
+                </a>
+                <a href="tel:01621851544" class="cta-btn cta-btn-outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                    01621 851544
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+    <section class="hero" id="home">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="eyebrow">Maldon's Trusted Foot Clinic</span>
+                <h1>Caring Experienced Footcare in Maldon</h1>
+                <div class="hero-buttons">
+                    <a href="tel:01621851544" class="btn btn-primary">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                        Call Now
+                    </a>
+                    <a href="#booking" class="btn btn-tertiary">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3v4M16 3v4M3 10h18" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 15l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Book Online
+                    </a>
+                </div>
+                <div class="hero-links">
+                    <a href="#services">Our Services</a>
+                    <span aria-hidden="true">&middot;</span>
+                    <a href="#about">About Us</a>
+                    <span aria-hidden="true">&middot;</span>
+                    <a href="https://www.google.com/maps/place/Maldon+Foot+Clinic/@51.7310405,0.6742786,17z/data=!4m8!3m7!1s0x47d8e124362ede63:0x41f00dd317eca6cb!8m2!3d51.7310372!4d0.6768535!9m1!1b1!16s%2Fg%2F11c2ps2c19?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Read Reviews</a>
+                </div>
+            </div>
+        </div>
+        <div class="section-curve" aria-hidden="true">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path class="wave-hero-visit" d="M0,40 C240,90 480,10 720,40 C960,70 1200,10 1440,40 L1440,100 L0,100 Z"/></svg>
+        </div>
+    </section>
+
+    <section class="light-bg" id="visit-us" style="position: relative;">
+        <div class="section-banner reveal">
+            <h2>Visit Us Today</h2>
+            <p>Drop by our clinic in the heart of Maldon, or get in touch to book your appointment.</p>
+        </div>
+        <div class="container">
+            <div class="visit-us-grid">
+                <div class="address-box reveal">
+                    <h3>Contact Details</h3>
+                    <div class="info-rows">
+                    <div class="info-row">
+                        <span class="info-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.6 7-11.5A7 7 0 0 0 5 9.5C5 14.4 12 21 12 21z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+                        </span>
+                        <div>
+                            <span class="address-box-label">Address</span>
+                            <p>16 The Kings Head Centre<br>38 High Street<br>Maldon, CM9 5PN</p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                        </span>
+                        <div>
+                            <span class="address-box-label">Phone &amp; Mobile</span>
+                            <p><a href="tel:01621851544" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">01621 851544</a> &middot; <a href="tel:07827315520" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">07827 315520</a></p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <div>
+                            <span class="address-box-label">Email</span>
+                            <p><a href="mailto:anitahanrahan@sky.com" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">anitahanrahan@sky.com</a></p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <div>
+                            <span class="address-box-label">Hours</span>
+                            <p><span class="day-label">Mon:</span> 9AM-5PM<br><span class="day-label">Tue:</span> 9AM-5PM<br><span class="day-label">Wed:</span> By Appointment<br><span class="day-label">Thu:</span> 9AM-5PM<br><span class="day-label">Fri:</span> 9AM-5PM<br><span class="day-label">Sat:</span> By Appointment<br><span class="day-label">Sun:</span> Closed</p>
+                            <div class="pricing-disclaimer" style="margin-top: 1rem; padding: 1rem 1.25rem;">
+                                <span class="disclaimer-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <div>
+                                    <strong>Please Note</strong>
+                                    <p>Flexible &amp; late appointments available upon request.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="location-card reveal">
+                    <h3>Find Us</h3>
+                    <div class="map-container">
+                        <iframe title="Maldon Foot Clinic location on Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2470.5396847620556!2d0.6591!3d51.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8d4a5d4a5d4ad%3A0x1234567890abcdef!2s38%20High%20Street%2C%20Maldon%2C%20CM9%205PN!5e0!3m2!1sen!2suk!4v1234567890"></iframe>
+                    </div>
+                    <div class="slideshow" id="clinicSlideshow">
+                        <img src="clinic-photo-5.jpg" alt="Maldon Foot Clinic sign near the Deli and Fizz passage" class="slide active">
+                        <img src="clinic-photo-3.jpg" alt="Entrance passage to the Kings Head Centre" class="slide">
+                        <img src="clinic-photo-2.jpg" alt="Covered walkway leading to Maldon Foot Clinic" class="slide">
+                        <img src="clinic-photo-1.jpg" alt="Maldon Foot Clinic shopfront and signage" class="slide">
+                        <button class="slide-nav prev" aria-label="Previous photo">&#10094;</button>
+                        <button class="slide-nav next" aria-label="Next photo">&#10095;</button>
+                        <div class="slide-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-fade" style="background: linear-gradient(to bottom, transparent, var(--cream));" aria-hidden="true"></div>
+    </section>
+
+    <section id="about" style="position: relative;">
+        <div class="section-banner reveal">
+            <h2>About Us</h2>
+            <p>Getting to know Maldon Foot Clinic</p>
+        </div>
+        <div class="container">
+            <div class="about-content">
+                <!-- Placeholder copy — replace with real About Us content -->
+                <p class="reveal">With years of hands-on experience in professional podiatry, Maldon Foot Clinic has built a reputation for careful, compassionate foot care in the heart of Maldon. Our approach combines clinical expertise with a genuinely caring, personal touch &mdash; treating every patient as an individual, not just an appointment.</p>
+                <p class="reveal reveal-delay-1">From routine maintenance to more specialist treatments, we take the time to listen, explain, and put you at ease, so you always leave feeling looked after. It's this attention to detail and commitment to quality care that keeps our patients coming back, appointment after appointment.</p>
+            </div>
+        </div>
+        <div class="section-fade" style="background: linear-gradient(to bottom, transparent, var(--light-gray));" aria-hidden="true"></div>
+    </section>
+
+    <section class="light-bg" id="services">
+        <div class="section-banner reveal">
+            <h2>Services &amp; Pricing</h2>
+            <p>Comprehensive foot care treatments with transparent pricing</p>
+        </div>
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-card featured reveal" tabindex="0">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Full Treatment</h3>
+                    <p>Nail cutting, hard skin &amp; corn removal &mdash; £47</p>
+                    <div class="pricing-detail">
+                        <p>Our most popular option &mdash; nail cutting, hard skin removal and corn treatment combined into one thorough appointment, leaving your feet fully refreshed and comfortable.</p>
+                    </div>
+                </div>
+                <div class="pricing-card reveal" tabindex="0">
+                    <h3>Nail Cutting</h3>
+                    <p>Careful, hygienic nail trimming, including thickened nails, diabetic feet &amp; fungal infections &mdash; £37</p>
+                    <div class="pricing-detail">
+                        <p>Careful, hygienic nail trimming for adults of all ages, including specialist care for thickened nails, diabetic feet, and fungal infections &mdash; performed with sterile instruments for complete peace of mind.</p>
+                    </div>
+                </div>
+                <div class="pricing-card reveal" tabindex="0">
+                    <h3>Hard Skin Removal</h3>
+                    <p>Gentle removal of hard skin &amp; calluses for smooth, comfortable feet &mdash; £39</p>
+                    <div class="pricing-detail">
+                        <p>Gentle, professional removal of hard skin and calluses to relieve pressure and discomfort, leaving your feet smooth, comfortable, and pain-free.</p>
+                    </div>
+                </div>
+                <div class="pricing-card reveal" tabindex="0">
+                    <h3>Corn Removal</h3>
+                    <p>Precise, pain-free corn removal using sterile scalpel technique &mdash; £39</p>
+                    <div class="pricing-detail">
+                        <p>Precise, pain-free removal of corns using sterile scalpel technique, with practical advice on footwear and prevention to stop them coming back.</p>
+                    </div>
+                </div>
+                <div class="pricing-card reveal" tabindex="0">
+                    <h3>Verruca Treatment</h3>
+                    <p>Effective treatment for single or multiple verrucae, with expert diagnosis &mdash; £34 (multiple: £39)</p>
+                    <div class="pricing-detail">
+                        <p>Effective treatment for single or multiple verrucae, from targeted removal to ongoing management plans, with expert diagnosis to get you back on your feet quickly.</p>
+                    </div>
+                </div>
+                <div class="pricing-card reveal" tabindex="0">
+                    <h3>Consultation &amp; General Foot Care</h3>
+                    <p>Thorough assessment, plus ongoing maintenance to keep your feet healthy year-round &mdash; free consultation</p>
+                    <div class="pricing-detail">
+                        <p>A thorough initial foot examination and clear treatment plan tailored to your needs, plus ongoing maintenance appointments and practical advice to keep your feet healthy year-round.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pricing-disclaimer reveal">
+                <span class="disclaimer-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                    <strong>Please Note</strong>
+                    <p>Missed appointments will be charged at the full treatment rate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="light-bg" id="reviews">
+        <div class="section-banner reveal">
+            <h2>Patient Reviews</h2>
+            <p>We're trusted by our patients &mdash; here's what they have to say.</p>
+        </div>
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.google.com/maps/place/Maldon+Foot+Clinic/@51.7310405,0.6742786,17z/data=!4m8!3m7!1s0x47d8e124362ede63:0x41f00dd317eca6cb!8m2!3d51.7310372!4d0.6768535!9m1!1b1!16s%2Fg%2F11c2ps2c19?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" class="btn btn-google" target="_blank" rel="noopener noreferrer" style="display: inline-block;">Visit Google Page</a>
+                <a href="https://www.facebook.com/MaldonfootclinicAnitaHanrahan/?locale=en_GB" class="btn btn-facebook" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+                    Follow on Facebook
+                </a>
+            </div>
+            <div class="reviews-carousel reveal">
+                <button class="carousel-nav prev" id="reviewsPrev" aria-label="Previous reviews">&#10094;</button>
+                <div class="reviews-viewport">
+                    <div class="reviews-track" id="reviewsTrack">
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Slim Gunn</div>
+                            <p class="review-text">“Excellent today as always, a pleasure to see Anita, she is caring and welcoming. Highly recommend.”</p>
+                            <div class="review-meta">3 months ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Christopher Gladman</div>
+                            <p class="review-text">“Fantastic service, I am a regular customer which speaks volumes.”</p>
+                            <div class="review-meta">6 months ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Glen Berry</div>
+                            <p class="review-text">“Great service and very pleased with the results of the treatment carried out.”</p>
+                            <div class="review-meta">4 months ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">John Hawkes</div>
+                            <p class="review-text">“Always very friendly and professional, would highly recommend.”</p>
+                            <div class="review-meta">7 months ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Lisa Murray</div>
+                            <p class="review-text">“Had my first appointment tonight with Nikki so nice and friendly, very pleased with out come. Will come again and recommend. Thank you.”</p>
+                            <div class="review-meta">2 years ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Rachel Jarman</div>
+                            <p class="review-text review-text-muted">Rated 5 stars on Google</p>
+                            <div class="review-meta">8 months ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Gloria Kinch</div>
+                            <p class="review-text review-text-muted">Rated 5 stars on Google</p>
+                            <div class="review-meta">1 year ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Callum McFedries-Pitt</div>
+                            <p class="review-text review-text-muted">Rated 5 stars on Google</p>
+                            <div class="review-meta">2 years ago · Google review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Teresa Dowry</div>
+                            <p class="review-text">“I would recommend Anita to anyone. Very gentle and considerate.”</p>
+                            <div class="review-meta">5 years ago · Facebook review</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-name">Elizabeth Cottis</div>
+                            <p class="review-text">“Anita did my feet again yesterday. Normally a regular and very much missed her excellent foot care during lock down. My feet feel great again.”</p>
+                            <div class="review-meta">6 years ago · Facebook review</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-nav next" id="reviewsNext" aria-label="Next reviews">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="light-bg" id="booking" style="position: relative;">
+        <div class="section-banner reveal">
+            <h2>Ready to Book?</h2>
+            <p>Click the button below to book your appointment online or call us directly.</p>
+        </div>
+        <div class="container reveal" style="text-align: center; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#visit-us" class="btn btn-solid-blue" style="display: inline-block;">Book an Appointment</a>
+            <a href="tel:01621851544" class="btn btn-outline-blue">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                01621 851544
+            </a>
+        </div>
+        <div class="section-curve" aria-hidden="true">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path class="wave-booking-footer" d="M0,60 C240,10 480,90 720,50 C960,10 1200,80 1440,40 L1440,100 L0,100 Z"/></svg>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>Professional podiatry services in Maldon, Essex.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul style="list-style: none;">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services &amp; Pricing</a></li>
+                    <li><a href="#visit-us">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><strong>Phone:</strong> <a href="tel:01621851544">01621 851544</a></p>
+                <p><strong>Mobile:</strong> <a href="tel:07827315520">07827 315520</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/MaldonfootclinicAnitaHanrahan/?locale=en_GB" target="_blank" rel="noopener noreferrer" aria-label="Maldon Foot Clinic on Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+                </a>
+            </div>
+            <p>&copy; 2026 Maldon Foot Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || href.length < 2) return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        (function () {
+            const nav = document.getElementById('siteNav');
+            const toggle = document.getElementById('navToggle');
+            if (!nav || !toggle) return;
+            toggle.addEventListener('click', () => {
+                const isOpen = nav.classList.toggle('nav-open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
+            nav.querySelectorAll('.nav-links a, .nav-right a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('nav-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+
+        (function () {
+            const slideshow = document.getElementById('clinicSlideshow');
+            const slides = slideshow.querySelectorAll('.slide');
+            const dotsContainer = slideshow.querySelector('.slide-dots');
+            let current = 0;
+            let timer = null;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+            const dots = dotsContainer.querySelectorAll('.slide-dot');
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            function play() {
+                if (timer) return;
+                timer = setInterval(() => goTo(current + 1), 4000);
+            }
+            function pause() {
+                clearInterval(timer);
+                timer = null;
+            }
+
+            slideshow.querySelector('.prev').addEventListener('click', () => goTo(current - 1));
+            slideshow.querySelector('.next').addEventListener('click', () => goTo(current + 1));
+            slideshow.addEventListener('mouseenter', pause);
+            slideshow.addEventListener('mouseleave', play);
+            slideshow.addEventListener('focusin', pause);
+            slideshow.addEventListener('focusout', play);
+            play();
+        })();
+
+        (function () {
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.pricing-card.touch-active').forEach(other => {
+                        if (other !== card) other.classList.remove('touch-active');
+                    });
+                    card.classList.toggle('touch-active');
+                });
+            });
+        })();
+
+        (function () {
+            const revealEls = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || revealEls.length === 0) {
+                revealEls.forEach(el => el.classList.add('in-view'));
+                return;
+            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(el => observer.observe(el));
+        })();
+
+        (function () {
+            const track = document.getElementById('reviewsTrack');
+            const prevBtn = document.getElementById('reviewsPrev');
+            const nextBtn = document.getElementById('reviewsNext');
+            if (!track || !prevBtn || !nextBtn) return;
+
+            const realCards = Array.from(track.children);
+            const realCount = realCards.length;
+
+            // Clone the set before and after so the strip can keep sliding
+            // in one direction forever, wrapping seamlessly like a wheel.
+            const before = document.createDocumentFragment();
+            const after = document.createDocumentFragment();
+            realCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                before.appendChild(clone);
+            });
+            realCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                after.appendChild(clone);
+            });
+            track.insertBefore(before, track.firstChild);
+            track.appendChild(after);
+
+            const cards = Array.from(track.children);
+            let index = realCount;
+
+            function step() {
+                return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 24);
+            }
+
+            function jumpTo(newIndex) {
+                track.style.transition = 'none';
+                index = newIndex;
+                track.style.transform = `translateX(-${index * step()}px)`;
+                void track.offsetWidth;
+                track.style.transition = '';
+            }
+
+            function slideTo(newIndex) {
+                index = newIndex;
+                track.style.transform = `translateX(-${index * step()}px)`;
+            }
+
+            jumpTo(realCount);
+
+            nextBtn.addEventListener('click', () => {
+                slideTo(index + 1);
+                if (index >= realCount * 2) {
+                    track.addEventListener('transitionend', function reset() {
+                        track.removeEventListener('transitionend', reset);
+                        jumpTo(realCount);
+                    }, { once: true });
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (index <= 0) {
+                    jumpTo(realCount * 2);
+                }
+                slideTo(index - 1);
+            });
+
+            window.addEventListener('resize', () => jumpTo(index));
+        })();
+    </script>
+</body>
+</html>
